@@ -24,6 +24,12 @@ setopt promptsubst
 # Colorless/git-less prompt to use while prompt loads in the background
 PS1="➜  %c%  "
 
+# Steal some plugins from ohmyzsh
+# Sublime lets me use "st" to launch sublime text from the terminal, but I don't really want the other stuff
+zinit wait lucid for \
+	atload"unalias stp; unalias stn; unfunction find_project; unfunction create_project" \
+		OMZP::sublime
+
 # Improve history and key bindings
 # Allows partial completion on arrow up, for example
 zinit wait lucid for \
