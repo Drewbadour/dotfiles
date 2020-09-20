@@ -1,0 +1,12 @@
+[Unit]
+Description=Logitech Lightspeed dongle wakeup disabler
+
+[Service]
+Type=oneshot
+Restart=no
+User=root
+Group=root
+ExecStart=/bin/bash -c "/usr/bin/lightspeed-wakeup"
+
+[Install]
+WantedBy=graphical.target

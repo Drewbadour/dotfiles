@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Synology Drive
+Exec=flatpak run com.synology.SynologyDrive --background
+Comment=Load Synology Drive in the background
