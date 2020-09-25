@@ -1,5 +1,4 @@
 syntax on
-color dracula
 set number
 :imap jj <ESC>
 nmap <S-Enter> O<Esc>
