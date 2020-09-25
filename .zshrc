@@ -32,9 +32,9 @@ zinit wait lucid for \
 
 # Improve history and key bindings
 # Allows partial completion on arrow up, for example
-zinit wait lucid for \
-	OMZL::history.zsh \
-	OMZL::key-bindings.zsh
+# Need these immediately
+zinit snippet OMZL::history.zsh
+zinit snippet OMZL::key-bindings.zsh
 
 # Adds better completion features like case-insensitive completion
 # Which is nice since APFS is case-insensitive by default
@@ -48,3 +48,16 @@ zinit wait'!' lucid for \
 	OMZL::git.zsh \
 	OMZL::theme-and-appearance.zsh \
 	OMZT::robbyrussell
+
+# Better ls to show the normal stuff
+# A - Almost all, I don't need to see . and ..
+# q - Don't let control characters mess with my ls
+# 1 - Everything on a new line instead of column
+alias ll="ls -Aq1"
+
+# Custom ls to show all details
+# A - Alsmot all, I don't need to see . and ..
+# h - More human readable sizes
+# l - Love that list view
+# q - Don't let control characters mess with my ls
+alias la="ls -Ahlq"
