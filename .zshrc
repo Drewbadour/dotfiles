@@ -1,9 +1,11 @@
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # Load local environment settings, like special private/work aliases (pbrun, etc.)
 if [ -f ~/.zshcustom ]; then
     source ~/.zshcustom
 fi
+
+# TODO(Drew): Check if starship is installed, and if it isn't, then grab it, a-la zinit
 
 # Download zinit if it doesn't already exist
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -18,14 +20,6 @@ fi
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Enable parameter expansion for prompt
-# Needed for things like color in your prompt
-setopt promptsubst
-
-# Colorless/git-less prompt that can be used while prompt loads in the background
-# Currently never shown since everything loads synchronously, which is faster than async
-PS1="➜  %c%  "
 
 # Steal some plugins from ohmyzsh
 # Sublime lets me use "st" to launch sublime text from the terminal, but I don't really want the other stuff
@@ -43,12 +37,8 @@ zinit snippet OMZL::key-bindings.zsh
 zinit ice atload'zicompinit'
 zinit snippet OMZL::completion.zsh
 
-# Install all of the stuff we need for our prompt
-# Git for git status, colors for colors, and then finally the prompt itself
-# Need the wait'!' for reloading the prompt when we are done
-zinit snippet OMZL::git.zsh
-zinit snippet OMZL::theme-and-appearance.zsh
-zinit snippet OMZT::robbyrussell
+# We are going to use starship for a prompt since it's fast and powerful
+eval "$(starship init zsh)"
 
 # Better ls to show the normal stuff
 # A - Almost all, I don't need to see . and ..
@@ -63,4 +53,4 @@ alias ll="ls -Aq1"
 # q - Don't let control characters mess with my ls
 alias la="ls -Ahlq"
 
-zprof
+# zprof
