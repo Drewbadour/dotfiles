@@ -1,0 +1,158 @@
+# TODO(Drew): scan_timeout
+# TODO(Drew): add_newline
+# TODO(Drew): format
+
+[aws]
+disabled = true
+
+# TODO(Drew): Maybe?
+[battery]
+disabled = true
+
+[character]
+success_symbol = "[→](bold green)"
+error_symbol = "[→](bold red)"
+vicmd_symbol = "[←](bold yellow)"
+
+[cmake]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[conda]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dart]
+disabled = true
+
+[directory]
+truncation_length = 0
+format = "[$path]($style) "
+
+[docker_context]
+disabled = true
+
+[dotnet]
+disbled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[env_var]
+disabled = true
+
+[erlang]
+disabled = true
+
+[gcloud]
+disabled = true
+
+# TODO(Drew): Configure this
+[git_branch]
+format = "([$branch]($style)) "
+
+[git_commit]
+disabled = true
+
+[git_state]
+
+[git_status]
+
+[golang]
+disabled = true
+
+[helm]
+disabled = true
+
+[hostname]
+disabled = true
+
+[java]
+disabled = true
+
+[jobs]
+disabled = true
+
+[julia]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[line_break]
+
+[lua]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[hg_branch]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[openstack]
+disabled = true
+
+# TODO(Drew): Explore the usefulness of this more with rust cargo
+[package]
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+# TODO(Drew): Explore this more
+[rust]
+
+[shlvl]
+disabled = true
+
+[signularity]
+disabled = true
+
+[status]
+disabled = true
+
+[swift]
+disabled = true
+
+[terraform]
+disabled = true
+
+[time]
+disabled = true
+
+[username]
+disabled = true
+
+[zig]
+disabled = true
