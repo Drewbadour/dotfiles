@@ -37,8 +37,8 @@ zinit snippet OMZL::key-bindings.zsh
 zinit ice atload'zicompinit'
 zinit snippet OMZL::completion.zsh
 
-# We are going to use starship for a prompt since it's fast and powerful
-eval "$(starship init zsh)"
+
+
 
 # Better ls to show the normal stuff
 # A - Almost all, I don't need to see . and ..
@@ -52,5 +52,27 @@ alias ll="ls -Aq1"
 # l - Love that list view
 # q - Don't let control characters mess with my ls
 alias la="ls -Ahlq"
+
+if !command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# We are going to use starship for a prompt since it's fast and powerful
+if ! command -v starship &> /dev/null; then
+    brew install starship
+fi
+eval "$(starship init zsh)"
+
+# Handle some additional kakoune install stuff if we need it
+if ! command -v kak &> /dev/null; then
+    brew install kakoune
+fi
+if [ ! -d "$HOME/.config/kak/plugins" ]; then
+    mkdir -p "$HOME/.config/kak/plugins/"
+fi
+if [ ! -d "$HOME/.config/kak/plugins/plug.kak" ]; then
+    git clone https://github.com/robertmeta/plug.kak.git ~/.config/kak/plugins/plug.kak
+    echo "$(tput bold)Don't forget to run 'plug-install' in Kakoune!$(tput sgr0)"
+fi
 
 # zprof
