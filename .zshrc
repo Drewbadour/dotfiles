@@ -5,13 +5,16 @@ if [ -f ~/.zshcustom ]; then
     source ~/.zshcustom
 fi
 
-# TODO(Drew): Check if starship is installed, and if it isn't, then grab it, a-la zinit
+# We'll need brew before anything else can work
+if !command -v brew &> /dev/null; then
+    /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 # Download zinit if it doesn't already exist
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}zinit%F{220}…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ Installation failed.%f%b"
 fi
@@ -53,19 +56,17 @@ alias ll="ls -Aq1"
 # q - Don't let control characters mess with my ls
 alias la="ls -Ahlq"
 
-if !command -v brew &> /dev/null; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+
 
 # We are going to use starship for a prompt since it's fast and powerful
 if ! command -v starship &> /dev/null; then
-    brew install starship
+    /opt/homebrew/bin/brew install starship
 fi
 eval "$(starship init zsh)"
 
 # Handle some additional kakoune install stuff if we need it
 if ! command -v kak &> /dev/null; then
-    brew install kakoune
+    /opt/homebrew/bin/brew install kakoune
 fi
 if [ ! -d "$HOME/.config/kak/plugins" ]; then
     mkdir -p "$HOME/.config/kak/plugins/"
