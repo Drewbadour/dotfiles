@@ -1,11 +1,13 @@
-# TODO(Drew): scan_timeout
 # TODO(Drew): add_newline
 # TODO(Drew): format
+
+# Add some extra time for git on large repos
+scan_timeout = 100
+command_timeout = 5000
 
 [aws]
 disabled = true
 
-# TODO(Drew): Maybe?
 [battery]
 disabled = true
 
@@ -37,7 +39,7 @@ format = "[$path]($style) "
 disabled = true
 
 [dotnet]
-disbled = true
+disabled = true
 
 [elixir]
 disabled = true
@@ -136,7 +138,7 @@ disabled = true
 [shlvl]
 disabled = true
 
-[signularity]
+[singularity]
 disabled = true
 
 [status]
