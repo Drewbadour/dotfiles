@@ -1,13 +1,29 @@
 # zmodload zsh/zprof
 
+ARCH=$(/usr/bin/arch)
+if [ "$ARCH" = "i386" ]; then
+    BREW_BY_PATH="/usr/local/bin/brew"
+elif [ "$ARCH" = "arm64" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    BREW_BY_PATH="/opt/homebrew/bin/brew"
+else
+    echo "Unable to determine hombrew path for arch: $ARCH"
+    BREW_BY_PATH="brew"
+fi
+
 # Load local environment settings, like special private/work aliases (pbrun, etc.)
 if [ -f ~/.zshcustom ]; then
+    echo "Using zshcustom"
     source ~/.zshcustom
 fi
 
 # We'll need brew before anything else can work
-if !command -v brew &> /dev/null; then
-    /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ ! -x $BREW_BY_PATH ]; then
+    echo "Prompting for password to install Hombrew"
+    if [ "$ARCH" = "i386" ]; then
+        sudo chown -R $(whoami): /usr/local/share/zsh
+    fi
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Download zinit if it doesn't already exist
@@ -60,13 +76,13 @@ alias la="ls -Ahlq"
 
 # We are going to use starship for a prompt since it's fast and powerful
 if ! command -v starship &> /dev/null; then
-    /opt/homebrew/bin/brew install starship
+    $BREW_BY_PATH install starship
 fi
 eval "$(starship init zsh)"
 
 # Handle some additional kakoune install stuff if we need it
 if ! command -v kak &> /dev/null; then
-    /opt/homebrew/bin/brew install kakoune
+    $BREW_BY_PATH install kakoune
 fi
 if [ ! -d "$HOME/.config/kak/plugins" ]; then
     mkdir -p "$HOME/.config/kak/plugins/"
